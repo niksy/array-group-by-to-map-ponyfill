@@ -1,6 +1,6 @@
 {
   "name": "array-group-by-to-map-ponyfill",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "`Array.prototype.groupByToMap` ponyfill.",
   "main": "cjs/index.js",
   "module": "esm/index.js",
