@@ -1,0 +1,107 @@
+{
+  "name": "array-group-by-to-map-ponyfill",
+  "version": "0.0.0",
+  "description": "`Array.prototype.groupByToMap` ponyfill.",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com)",
+  "files": [
+    "cjs/",
+    "esm/",
+    "CHANGELOG.md",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "license": "MIT",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "release": "np --no-release-draft",
+    "version": "if [ $(git rev-parse --abbrev-ref HEAD) == 'master' ]; then sed -i '' '/\\[unreleased\\]:/d' CHANGELOG.md && version-changelog CHANGELOG.md && changelog-verify CHANGELOG.md && git add CHANGELOG.md; else echo; fi",
+    "postpublish": "GITHUB_TOKEN=$GITHUB_RELEASE_TOKEN github-release-from-changelog",
+    "lint": "eslint '{index,lib/**/*,test/**/*}.js'",
+    "lint:types": "tsc",
+    "test:automated": "BABEL_ENV=test karma start",
+    "test:automated:watch": "npm run test:automated -- --auto-watch --no-single-run",
+    "test": "npm run test:automated",
+    "build": "rollup --config rollup.config.js",
+    "module-check": "node -e 'require(\"array-group-by-to-map-ponyfill\");' && node --input-type=module -e 'import \"array-group-by-to-map-ponyfill\";'",
+    "prerelease": "npm run lint && npm run lint:types && npm run build && npm run module-check",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/runtime": "^7.2.0",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@types/mocha": "^8.2.3",
+    "@types/node": "^16.3.0",
+    "babel-plugin-transform-object-hasown": "^1.1.0",
+    "changelog-verify": "^1.1.2",
+    "core-js": "^2.6.5",
+    "cpy": "^8.1.2",
+    "eslint": "^7.31.0",
+    "eslint-config-niksy": "^10.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsdoc": "^33.3.0",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-unicorn": "^31.0.0",
+    "esm": "^3.0.51",
+    "execa": "^5.1.1",
+    "github-release-from-changelog": "^2.1.1",
+    "husky": "^4.3.0",
+    "karma": "^5.2.3",
+    "karma-browserstack-launcher": "^1.6.0",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-coverage": "^2.0.3",
+    "karma-mocha": "^2.0.1",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-rollup-preprocessor": "^7.0.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "lint-staged": "^10.4.2",
+    "mocha": "^8.2.0",
+    "np": "^7.6.0",
+    "prettier": "^2.4.0",
+    "rollup": "^2.32.1",
+    "rollup-plugin-istanbul": "^3.0.0",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "typescript": "^4.3.5",
+    "version-changelog": "^3.1.1"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "keywords": [
+    "array",
+    "groupbytomap",
+    "array.prototype.groupbytomap",
+    "ponyfill"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niksy/array-group-by-to-map-ponyfill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/niksy/array-group-by-to-map-ponyfill/issues"
+  },
+  "homepage": "https://github.com/niksy/array-group-by-to-map-ponyfill#readme",
+  "types": "esm/index.d.ts"
+}
