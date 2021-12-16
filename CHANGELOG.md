@@ -2,6 +2,10 @@
 
 ## [Unreleased][]
 
+### Fixed
+
+-   Make spec compliant by returning `Map`
+
 ## [1.0.0][] - 2021-12-15
 
 ### Added

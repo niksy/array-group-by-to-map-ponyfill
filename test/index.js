@@ -21,9 +21,9 @@ it('handles simple array', function () {
 });
 
 it('handles complex arrays', function () {
-	/* eslint-disable no-undefined */
+	/* eslint-disable no-undefined, unicorn/prefer-spread */
 	assert.deepEqual(
-		groupByToMap([1, 2, 3], (value) => value % 2),
+		Array.from(groupByToMap([1, 2, 3], (value) => value % 2)),
 		[
 			[1, [1, 3]],
 			[0, [2]]
@@ -31,9 +31,11 @@ it('handles complex arrays', function () {
 		'#1'
 	);
 	assert.deepEqual(
-		groupByToMap(
-			[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-			(value) => `i${value % 5}`
+		Array.from(
+			groupByToMap(
+				[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+				(value) => `i${value % 5}`
+			)
 		),
 		[
 			['i1', [1, 6, 11]],
@@ -45,7 +47,7 @@ it('handles complex arrays', function () {
 		'#2'
 	);
 	assert.deepEqual(
-		groupByToMap(Array.from({ length: 3 }), (value) => value),
+		Array.from(groupByToMap(Array.from({ length: 3 }), (value) => value)),
 		[[undefined, [undefined, undefined, undefined]]],
 		'#3'
 	);

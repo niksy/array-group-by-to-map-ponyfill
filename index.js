@@ -27,9 +27,9 @@
  *
  * @template T
  * @callback Ponyfill
- * @param   {T[]}            array    Array to group.
- * @param   {Callback<T>}    callback Callback which should return key with which to group array.
- * @returns {MappedGroup<T>}
+ * @param   {T[]}                                             array    Array to group.
+ * @param   {Callback<T>}                                     callback Callback which should return key with which to group array.
+ * @returns {Map<MappedGroup<T>[0][0], MappedGroup<T>[0][1]>}
  */
 
 /**
@@ -83,7 +83,7 @@ function ponyfill(array, callback) {
 		}
 	}
 
-	return mappedResult;
+	return new Map(mappedResult);
 }
 
 /* istanbul ignore next */

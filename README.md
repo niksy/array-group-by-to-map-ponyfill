@@ -21,7 +21,7 @@ import groupByToMap from 'array-group-by-to-map-ponyfill';
 
 groupByToMap([1, 2, 3, 4, 5], (value) => (value % 2 === 0 ? 'even' : 'odd'));
 
-// [['odd', [1, 3, 5]], ['even', [2, 4]]]
+// Map([['odd', [1, 3, 5]], ['even', [2, 4]]])
 ```
 
 You can **use named export `preferNative` if you wish to use native
@@ -33,7 +33,7 @@ Beware of
 
 ### groupByToMap(array, callback)
 
-Returns: `array`
+Returns: `Map`
 
 Group array items to map.
 
